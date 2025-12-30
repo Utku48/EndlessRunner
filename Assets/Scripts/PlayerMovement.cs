@@ -9,8 +9,20 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
     private bool isGameOver = false;
 
+    [Header("Score")]
+    public int score = 0;
+    public float scoreInterval = 2f;
+    public int scorePerInterval = 5;
+
     private int currentLane = 1; // 0 = sol, 1 = orta, 2 = sağ
     private float targetX;
+    private float scoreTimer = 0f;
+
+
+    [Header("GameOverUi")]
+    public GameOverUi gameOverUi;
+
+
 
     void Start()
     {
@@ -22,13 +34,18 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isGameOver) return;
 
+        // Lane input
         if (Input.GetKeyDown(KeyCode.A))
-        {
             ChangeLane(-1);
-        }
         else if (Input.GetKeyDown(KeyCode.D))
-        {
             ChangeLane(1);
+
+        // Score
+        scoreTimer += Time.deltaTime;
+        if (scoreTimer >= scoreInterval)
+        {
+            score += scorePerInterval;
+            scoreTimer = 0f;
         }
     }
 
@@ -58,7 +75,10 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.gameObject.CompareTag("obstacle"))
         {
-            Destroy(other.gameObject);
+            isGameOver = true;
+            rb.velocity = Vector3.zero;
+
+            gameOverUi.Show(score);
         }
     }
 
