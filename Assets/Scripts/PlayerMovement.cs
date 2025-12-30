@@ -54,4 +54,13 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("obstacle"))
+        {
+            Destroy(other.gameObject);
+        }
+    }
+
+
 }
