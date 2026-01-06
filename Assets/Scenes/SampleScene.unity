@@ -1556,6 +1556,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1645453948}
+  _playButton: {fileID: 857829990}
+  _settingsButton: {fileID: 857829990}
 --- !u!1 &1497407180
 GameObject:
   m_ObjectHideFlags: 0
