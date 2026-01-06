@@ -1,7 +1,20 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using TMPro;
+using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Boost")]
+    public bool isBoostActive = false;
+    public float boostMultiplier = 2f;
+    public float boostDuration = 3f;
+
+    public float normalSpeed;
+    private bool hasBoostCharge = false;
+    private int nextBoostScore = 25;
+
+    public TextMeshProUGUI gScoreText;
+
     public float forwardSpeed = 8f;
     public float laneOffset = 20f;
     public float laneChangeSpeed = 10f;
@@ -24,10 +37,14 @@ public class PlayerMovement : MonoBehaviour
 
 
 
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         targetX = 0f; // orta
+
+        normalSpeed = forwardSpeed;
     }
 
     void Update()
@@ -46,8 +63,25 @@ public class PlayerMovement : MonoBehaviour
         {
             score += scorePerInterval;
             scoreTimer = 0f;
+
+            if (score > nextBoostScore)
+            {
+                hasBoostCharge = true;
+                nextBoostScore += 25;
+            }
         }
+
+
+        if (hasBoostCharge && !isBoostActive &&
+            Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            StartCoroutine(BoostCoroutine());
+
+        }
+
+        gScoreText.text = "Score: " + score;
     }
+
 
     void FixedUpdate()
     {
@@ -81,6 +115,21 @@ public class PlayerMovement : MonoBehaviour
             gameOverUi.Show(score);
         }
     }
+
+
+    IEnumerator BoostCoroutine()
+    {
+        isBoostActive = true;
+        forwardSpeed = normalSpeed * boostMultiplier;
+
+        // (İstersen burada efekt, ses, FOV vs. eklersin)
+
+        yield return new WaitForSeconds(5f);
+
+        forwardSpeed = normalSpeed;
+        isBoostActive = false;
+    }
+
 
 
 }
