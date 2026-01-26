@@ -191,6 +191,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Platform1Parent
       objectReference: {fileID: 0}
+    - target: {fileID: 7534666888079012148, guid: 28e531f69a623cf4e859c809d874dc2a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 34.3
+      objectReference: {fileID: 0}
     - target: {fileID: 8865946864604896911, guid: 28e531f69a623cf4e859c809d874dc2a, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -654,6 +658,7 @@ MonoBehaviour:
   scoreInterval: 2
   scorePerInterval: 5
   gameOverUi: {fileID: 1018563769}
+  gameOverPanel: {fileID: 1018563765}
 --- !u!1 &570462990
 GameObject:
   m_ObjectHideFlags: 0
@@ -1769,8 +1774,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4

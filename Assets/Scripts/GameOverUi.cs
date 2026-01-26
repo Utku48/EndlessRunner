@@ -15,17 +15,18 @@ public class GameOverUi : MonoBehaviour
 
     void Start()
     {
-        gameObject.SetActive(false);
+        
         ButtonAnim(_restartButton);
         ButtonAnim(_menuButton);
     }
 
     public void Show(int finalScore)
     {
-        scoreText.text = "Skor: " + finalScore.ToString();
+        scoreText.text = "Skor: " + finalScore;
         gameObject.SetActive(true);
         Time.timeScale = 0f;
     }
+
 
 
 

@@ -34,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("GameOverUi")]
     public GameOverUi gameOverUi;
-
+    public GameObject gameOverPanel;
 
 
 
@@ -109,10 +109,12 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.gameObject.CompareTag("obstacle"))
         {
+            gameOverPanel.SetActive(true);
+            gameOverUi.Show(score);
             isGameOver = true;
             rb.velocity = Vector3.zero;
+            Debug.Log("Çarpışma");
 
-            gameOverUi.Show(score);
         }
     }
 
